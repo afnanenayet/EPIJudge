@@ -17,18 +17,13 @@ def merge_two_sorted_lists(L1, L2):
     while it_1 is not None and it_2 is not None:
         if it_1.data <= it_2.data:
             curr.next = it_1
-            curr = curr.next
             it_1 = it_1.next
         else:
             curr.next = it_2
-            curr = curr.next
             it_2 = it_2.next
+        curr = curr.next
 
-    for it in [it_1, it_2]:
-        while it is not None:
-            curr.next = it
-            it = it.next
-            curr = curr.next
+    curr.next = it_1 or it_2
     return head.next
 
 
