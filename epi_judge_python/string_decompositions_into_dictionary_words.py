@@ -6,9 +6,11 @@ def find_all_substrings(s, words):
     return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "string_decompositions_into_dictionary_words.py",
-            'string_decompositions_into_dictionary_words.tsv',
-            find_all_substrings))
+            "string_decompositions_into_dictionary_words.tsv",
+            find_all_substrings,
+        )
+    )

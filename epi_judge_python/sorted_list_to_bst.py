@@ -38,8 +38,8 @@ def build_bst_from_sorted_doubly_list_wrapper(executor, l):
             input_list.next.prev = input_list
 
     input_list = executor.run(
-        functools.partial(build_bst_from_sorted_doubly_list, input_list,
-                          len(l)))
+        functools.partial(build_bst_from_sorted_doubly_list, input_list, len(l))
+    )
 
     it = iter(l)
     compare_vector_and_tree(input_list, it)
@@ -47,8 +47,11 @@ def build_bst_from_sorted_doubly_list_wrapper(executor, l):
         raise TestFailure("Too many l in the tree")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "sorted_list_to_bst.py", "sorted_list_to_bst.tsv",
-            build_bst_from_sorted_doubly_list_wrapper))
+            "sorted_list_to_bst.py",
+            "sorted_list_to_bst.tsv",
+            build_bst_from_sorted_doubly_list_wrapper,
+        )
+    )

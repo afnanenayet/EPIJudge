@@ -6,9 +6,11 @@ def find_kth_in_two_sorted_arrays(A, B, k):
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "kth_largest_element_in_two_sorted_arrays.py",
-            'kth_largest_element_in_two_sorted_arrays.tsv',
-            find_kth_in_two_sorted_arrays))
+            "kth_largest_element_in_two_sorted_arrays.tsv",
+            find_kth_in_two_sorted_arrays,
+        )
+    )

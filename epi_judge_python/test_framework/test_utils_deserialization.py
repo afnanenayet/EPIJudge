@@ -34,7 +34,7 @@ def get_string_parser_for_type(typename):
         inner_parser = get_object_cast_for_type(m.group(1))
 
         def list_parse(data):
-            parsed = json.loads("{\"data\":" + data + "}")["data"]
+            parsed = json.loads('{"data":' + data + "}")["data"]
             return [inner_parser(x) for x in parsed]
 
         return list_parse
@@ -140,13 +140,15 @@ def get_object_cast_for_type(typename):
     m = tu_regex.match(typename)
     if m and len(m.groups()) == 1:
         # TODO support inner tuples
-        parsers = [get_object_cast_for_type(x) for x in m.group(1).split(',')]
+        parsers = [get_object_cast_for_type(x) for x in m.group(1).split(",")]
 
         def tuple_parse(data):
             if len(data) != len(parsers):
                 raise RuntimeError(
                     "Tuple parser: expected {} values, got {}".format(
-                        len(parsers), len(data)))
+                        len(parsers), len(data)
+                    )
+                )
             return tuple([p(x) for (p, x) in zip(parsers, data)])
 
         return tuple_parse
@@ -166,9 +168,7 @@ def build_binary_tree(data, key_ctor, node_ctor):
     :param node_ctor - tree node constructor,
             that takes node key as a single argument.
     """
-    nodes = [
-        None if node == 'null' else node_ctor(key_ctor(node)) for node in data
-    ]
+    nodes = [None if node == "null" else node_ctor(key_ctor(node)) for node in data]
     candidate_children = nodes[::-1]
     root = candidate_children.pop()
     for node in nodes:

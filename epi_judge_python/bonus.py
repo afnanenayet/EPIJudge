@@ -6,7 +6,5 @@ def calculate_bonus(productivity):
     return 0
 
 
-if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main("bonus.py", 'bonus.tsv',
-                                       calculate_bonus))
+if __name__ == "__main__":
+    exit(generic_test.generic_test_main("bonus.py", "bonus.tsv", calculate_bonus))

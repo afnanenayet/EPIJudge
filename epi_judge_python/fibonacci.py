@@ -6,7 +6,5 @@ def fibonacci(n):
     return -1
 
 
-if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main("fibonacci.py", 'fibonacci.tsv',
-                                       fibonacci))
+if __name__ == "__main__":
+    exit(generic_test.generic_test_main("fibonacci.py", "fibonacci.tsv", fibonacci))

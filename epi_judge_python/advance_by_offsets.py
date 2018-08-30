@@ -6,7 +6,9 @@ def can_reach_end(A):
     return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "advance_by_offsets.py", "advance_by_offsets.tsv", can_reach_end))
+            "advance_by_offsets.py", "advance_by_offsets.tsv", can_reach_end
+        )
+    )

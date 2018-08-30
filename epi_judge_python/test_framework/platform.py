@@ -6,7 +6,7 @@ ENABLE_COLOR_OUTPUT = False
 
 
 def std_out_clear_line():
-    print(end='\r')
+    print(end="\r")
 
 
 def set_output_opts(tty_mode, color_mode):
@@ -26,7 +26,7 @@ def use_color_output():
 
 
 def running_on_win():
-    return sys.platform == 'win32'
+    return sys.platform == "win32"
 
 
 if running_on_win():
@@ -46,6 +46,7 @@ if running_on_win():
 
         class ConsoleScreenBufferInfo(Structure):
             """struct in wincon.h."""
+
             _fields_ = [
                 ("dwSize", COORD),
                 ("dwCursorPosition", COORD),
@@ -55,9 +56,7 @@ if running_on_win():
             ]
 
         _GetStdHandle = windll.kernel32.GetStdHandle
-        _GetStdHandle.argtypes = [
-            wintypes.DWORD,
-        ]
+        _GetStdHandle.argtypes = [wintypes.DWORD]
         _GetStdHandle.restype = wintypes.HANDLE
 
         _GetConsoleScreenBufferInfo = windll.kernel32.GetConsoleScreenBufferInfo
@@ -68,10 +67,7 @@ if running_on_win():
         _GetConsoleScreenBufferInfo.restype = wintypes.BOOL
 
         _SetConsoleTextAttribute = windll.kernel32.SetConsoleTextAttribute
-        _SetConsoleTextAttribute.argtypes = [
-            wintypes.HANDLE,
-            wintypes.WORD,
-        ]
+        _SetConsoleTextAttribute.argtypes = [wintypes.HANDLE, wintypes.WORD]
         _SetConsoleTextAttribute.restype = wintypes.BOOL
 
         STDOUT = -11

@@ -6,8 +6,9 @@ def rebuild_bst_from_preorder(preorder_sequence):
     return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("bst_from_preorder.py",
-                                       'bst_from_preorder.tsv',
-                                       rebuild_bst_from_preorder))
+        generic_test.generic_test_main(
+            "bst_from_preorder.py", "bst_from_preorder.tsv", rebuild_bst_from_preorder
+        )
+    )

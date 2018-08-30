@@ -7,23 +7,20 @@ from test_framework.test_failure import PropertyName, TestFailure
 
 
 def split_tsv_file(tsv_file):
-    ROW_DELIM = '\n'
-    FIELD_DELIM = '\t'
+    ROW_DELIM = "\n"
+    FIELD_DELIM = "\t"
 
     try:
         with open(tsv_file) as input_data:
-            return [
-                row.replace(ROW_DELIM, '').split(FIELD_DELIM)
-                for row in input_data
-            ]
+            return [row.replace(ROW_DELIM, "").split(FIELD_DELIM) for row in input_data]
     except OSError:
-        raise RuntimeError('Test data file not found')
+        raise RuntimeError("Test data file not found")
 
 
 def get_default_test_data_dir_path():
     MAX_SEARCH_DEPTH = 4
 
-    path = 'test_data'
+    path = "test_data"
     for _ in range(MAX_SEARCH_DEPTH):
         if os.path.isdir(path):
             return path
@@ -35,8 +32,7 @@ def get_default_test_data_dir_path():
 
 
 def get_file_path_in_judge_dir(file_name):
-    return os.path.join(get_default_test_data_dir_path(), os.path.pardir,
-                        file_name)
+    return os.path.join(get_default_test_data_dir_path(), os.path.pardir, file_name)
 
 
 def filter_bracket_comments(s):
@@ -45,7 +41,7 @@ def filter_bracket_comments(s):
     This function removes all such comments.
     """
     bracket_enclosed_comment = r"(\[[^\]]*\])"
-    return re.sub(bracket_enclosed_comment, '', s, 0).replace(' ', '')
+    return re.sub(bracket_enclosed_comment, "", s, 0).replace(" ", "")
 
 
 def assert_all_values_present(reference, result):
@@ -59,13 +55,14 @@ def assert_all_values_present(reference, result):
 
     flatten = lambda l: [item for sublist in l for item in sublist]
     excess_items = flatten(
-        [x] * -count for x, count in reference_set.items() if count < 0)
+        [x] * -count for x, count in reference_set.items() if count < 0
+    )
     missing_items = flatten(
-        [x] * count for x, count in reference_set.items() if count > 0)
+        [x] * count for x, count in reference_set.items() if count > 0
+    )
 
     if excess_items or missing_items:
-        e = TestFailure('Value set changed')\
-            .with_property(PropertyName.RESULT, result)
+        e = TestFailure("Value set changed").with_property(PropertyName.RESULT, result)
         if excess_items:
             e.with_property(PropertyName.EXCESS_ITEMS, excess_items)
         if missing_items:
@@ -92,7 +89,7 @@ def unordered_compare(a, b):
 
 
 def has_executor_hook(func):
-    return hasattr(func, 'executor_hook') and func.executor_hook
+    return hasattr(func, "executor_hook") and func.executor_hook
 
 
 def enable_executor_hook(func):

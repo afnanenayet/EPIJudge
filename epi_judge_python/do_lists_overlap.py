@@ -36,7 +36,7 @@ def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):
         it = l0
         for _ in range(cycle0):
             if not it:
-                raise RuntimeError('Invalid input data')
+                raise RuntimeError("Invalid input data")
             it = it.next
         last.next = it
 
@@ -47,7 +47,7 @@ def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):
         it = l1
         for _ in range(cycle1):
             if not it:
-                raise RuntimeError('Invalid input data')
+                raise RuntimeError("Invalid input data")
             it = it.next
         last.next = it
 
@@ -60,11 +60,12 @@ def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):
     result = executor.run(functools.partial(overlapping_lists, l0, l1))
 
     if not (id(result) in common_nodes or (not common_nodes and not result)):
-        raise TestFailure('Invalid result')
+        raise TestFailure("Invalid result")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("do_lists_overlap.py",
-                                       'do_lists_overlap.tsv',
-                                       overlapping_lists_wrapper))
+        generic_test.generic_test_main(
+            "do_lists_overlap.py", "do_lists_overlap.tsv", overlapping_lists_wrapper
+        )
+    )

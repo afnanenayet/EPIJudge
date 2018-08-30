@@ -4,7 +4,7 @@ import functools
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-Subarray = collections.namedtuple('Subarray', ('start', 'end'))
+Subarray = collections.namedtuple("Subarray", ("start", "end"))
 
 
 def find_smallest_sequentially_covering_subset(paragraph, keywords):
@@ -13,16 +13,17 @@ def find_smallest_sequentially_covering_subset(paragraph, keywords):
 
 
 @enable_executor_hook
-def find_smallest_sequentially_covering_subset_wrapper(executor, paragraph,
-                                                       keywords):
+def find_smallest_sequentially_covering_subset_wrapper(executor, paragraph, keywords):
     result = executor.run(
-        functools.partial(find_smallest_sequentially_covering_subset,
-                          paragraph, keywords))
+        functools.partial(
+            find_smallest_sequentially_covering_subset, paragraph, keywords
+        )
+    )
 
     kw_idx = 0
     para_idx = result.start
     if para_idx < 0:
-        raise RuntimeError('Subarray start index is negative')
+        raise RuntimeError("Subarray start index is negative")
 
     while kw_idx < len(keywords):
         if para_idx >= len(paragraph):
@@ -36,9 +37,11 @@ def find_smallest_sequentially_covering_subset_wrapper(executor, paragraph,
     return result.end - result.start + 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "smallest_subarray_covering_all_values.py",
-            'smallest_subarray_covering_all_values.tsv',
-            find_smallest_sequentially_covering_subset_wrapper))
+            "smallest_subarray_covering_all_values.tsv",
+            find_smallest_sequentially_covering_subset_wrapper,
+        )
+    )

@@ -1,12 +1,7 @@
-
-
 class ListNode:
     def __init__(self, data=0, next=None):
         self.data = data
         self.next = next
-
-
-
 
     def __eq__(self, other):
         a, b = self, other
@@ -21,21 +16,21 @@ class ListNode:
         visited = set()
         first = True
 
-        result = ''
+        result = ""
 
         while node:
             if first:
                 first = False
             else:
-                result += ' -> '
+                result += " -> "
 
             if id(node) in visited:
                 if node.next is not node:
                     result += str(node.data)
-                    result += ' -> ... -> '
+                    result += " -> ... -> "
 
                 result += str(node.data)
-                result += ' -> ...'
+                result += " -> ..."
                 break
             else:
                 result += str(node.data)

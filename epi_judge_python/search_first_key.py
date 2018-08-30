@@ -5,7 +5,7 @@ def search_first_of_k(A, k):
     L, R = 0, len(A) - 1
 
     while L <= R:
-        # with Python's "big" integers, don't need to worry about buffer 
+        # with Python's "big" integers, don't need to worry about buffer
         # overflow bug
         M = (L + R) // 2
 

@@ -6,7 +6,9 @@ def minimum_messiness(words, line_length):
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "pretty_printing.py", 'pretty_printing.tsv', minimum_messiness))
+            "pretty_printing.py", "pretty_printing.tsv", minimum_messiness
+        )
+    )

@@ -15,16 +15,19 @@ def lca(tree, node0, node1):
 def lca_wrapper(executor, tree, key1, key2):
     strip_parent_link(tree)
     result = executor.run(
-        functools.partial(lca, tree, must_find_node(tree, key1),
-                          must_find_node(tree, key2)))
+        functools.partial(
+            lca, tree, must_find_node(tree, key1), must_find_node(tree, key2)
+        )
+    )
 
     if result is None:
         raise TestFailure("Result can't be None")
     return result.data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("lowest_common_ancestor.py",
-                                       'lowest_common_ancestor.tsv',
-                                       lca_wrapper))
+        generic_test.generic_test_main(
+            "lowest_common_ancestor.py", "lowest_common_ancestor.tsv", lca_wrapper
+        )
+    )

@@ -12,7 +12,7 @@ def exterior_binary_tree(tree):
 
 def create_output_list(L):
     if any(l is None for l in L):
-        raise TestFailure('Resulting list contains None')
+        raise TestFailure("Resulting list contains None")
     return [l.data for l in L]
 
 
@@ -23,7 +23,9 @@ def create_output_list_wrapper(executor, tree):
     return create_output_list(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("tree_exterior.py", 'tree_exterior.tsv',
-                                       create_output_list_wrapper))
+        generic_test.generic_test_main(
+            "tree_exterior.py", "tree_exterior.tsv", create_output_list_wrapper
+        )
+    )

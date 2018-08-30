@@ -20,8 +20,9 @@ def is_binary_tree_bst(tree, low_range=float("-inf"), high_range=float("inf")):
         return False
 
     # If node is valid, then tree is as valid as long as its children are valid
-    return is_binary_tree_bst(tree.left, low_range=low_range, high_range=tree.data) and \
-        is_binary_tree_bst(tree.right, low_range=tree.data, high_range=high_range)
+    return is_binary_tree_bst(
+        tree.left, low_range=low_range, high_range=tree.data
+    ) and is_binary_tree_bst(tree.right, low_range=tree.data, high_range=high_range)
 
 
 if __name__ == "__main__":

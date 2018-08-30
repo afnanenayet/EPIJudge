@@ -6,8 +6,11 @@ def cyclically_right_shift_list(L, k):
     return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("list_cyclic_right_shift.py",
-                                       'list_cyclic_right_shift.tsv',
-                                       cyclically_right_shift_list))
+        generic_test.generic_test_main(
+            "list_cyclic_right_shift.py",
+            "list_cyclic_right_shift.tsv",
+            cyclically_right_shift_list,
+        )
+    )

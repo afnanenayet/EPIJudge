@@ -6,8 +6,9 @@ def generate_pascal_triangle(n):
     return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("pascal_triangle.py",
-                                       'pascal_triangle.tsv',
-                                       generate_pascal_triangle))
+        generic_test.generic_test_main(
+            "pascal_triangle.py", "pascal_triangle.tsv", generate_pascal_triangle
+        )
+    )

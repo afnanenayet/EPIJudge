@@ -2,7 +2,10 @@
 import inspect
 import math
 
-from test_framework.binary_tree_utils import assert_equal_binary_trees, is_object_tree_type
+from test_framework.binary_tree_utils import (
+    assert_equal_binary_trees,
+    is_object_tree_type,
+)
 from test_framework.test_failure import PropertyName, TestFailure
 from test_framework.test_utils import filter_bracket_comments, has_executor_hook
 from test_framework.test_utils_deserialization import get_string_parser_for_type
@@ -35,9 +38,10 @@ class GenericTestHandler:
         self._has_executor_hook = has_executor_hook(func)
         self._param_parsers = []
         self._param_names = [
-            p.name for p in inspect.signature(self._func).parameters.values()
+            p.name
+            for p in inspect.signature(self._func).parameters.values()
             if p.default is inspect.Parameter.empty
-        ][1 if self._has_executor_hook else 0:]
+        ][1 if self._has_executor_hook else 0 :]
         self._comp = comparator
         self._ret_value_parser = None
 
@@ -75,9 +79,10 @@ class GenericTestHandler:
         """
         args = [
             parser(x)
-            for parser, x in zip(self._param_parsers,
-                                 test_args[:-1 if not self.expected_is_void()
-                                           else len(test_args)])
+            for parser, x in zip(
+                self._param_parsers,
+                test_args[: -1 if not self.expected_is_void() else len(test_args)],
+            )
         ]
 
         executor = TimedExecutor(timeout_seconds)
@@ -106,9 +111,9 @@ class GenericTestHandler:
             comparison_result = expected == result
 
         if not comparison_result:
-            raise TestFailure()\
-                .with_property(PropertyName.EXPECTED, expected)\
-                .with_property(PropertyName.RESULT, result)
+            raise TestFailure().with_property(
+                PropertyName.EXPECTED, expected
+            ).with_property(PropertyName.RESULT, result)
 
     def expected_is_void(self):
         return self._ret_value_parser is None

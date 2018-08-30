@@ -18,8 +18,11 @@ def find_line_with_most_points_wrapper(executor, points):
     return executor.run(functools.partial(find_line_with_most_points, points))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("line_through_most_points.py",
-                                       'line_through_most_points.tsv',
-                                       find_line_with_most_points_wrapper))
+        generic_test.generic_test_main(
+            "line_through_most_points.py",
+            "line_through_most_points.tsv",
+            find_line_with_most_points_wrapper,
+        )
+    )

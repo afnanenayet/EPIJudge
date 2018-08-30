@@ -6,8 +6,11 @@ def minimum_path_weight(triangle):
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("minimum_weight_path_in_a_triangle.py",
-                                       'minimum_weight_path_in_a_triangle.tsv',
-                                       minimum_path_weight))
+        generic_test.generic_test_main(
+            "minimum_weight_path_in_a_triangle.py",
+            "minimum_weight_path_in_a_triangle.tsv",
+            minimum_path_weight,
+        )
+    )

@@ -7,8 +7,11 @@ def transform_string(D, s, t):
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("string_transformability.py",
-                                       'string_transformability.tsv',
-                                       transform_string))
+        generic_test.generic_test_main(
+            "string_transformability.py",
+            "string_transformability.tsv",
+            transform_string,
+        )
+    )

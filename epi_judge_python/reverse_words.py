@@ -20,7 +20,9 @@ def reverse_words_wrapper(executor, s):
     return s_copy.decode("utf-8")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("reverse_words.py", 'reverse_words.tsv',
-                                       reverse_words_wrapper))
+        generic_test.generic_test_main(
+            "reverse_words.py", "reverse_words.tsv", reverse_words_wrapper
+        )
+    )

@@ -6,7 +6,9 @@ def next_permutation(perm):
     return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "next_permutation.py", 'next_permutation.tsv', next_permutation))
+            "next_permutation.py", "next_permutation.tsv", next_permutation
+        )
+    )

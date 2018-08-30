@@ -6,7 +6,9 @@ def inorder_traversal(tree):
     return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("tree_inorder.py", 'tree_inorder.tsv',
-                                       inorder_traversal))
+        generic_test.generic_test_main(
+            "tree_inorder.py", "tree_inorder.tsv", inorder_traversal
+        )
+    )

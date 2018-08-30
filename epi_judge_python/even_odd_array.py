@@ -29,7 +29,9 @@ def even_odd_wrapper(executor, A):
         raise TestFailure("Elements mismatch")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("even_odd_array.py",
-                                       'even_odd_array.tsv', even_odd_wrapper))
+        generic_test.generic_test_main(
+            "even_odd_array.py", "even_odd_array.tsv", even_odd_wrapper
+        )
+    )

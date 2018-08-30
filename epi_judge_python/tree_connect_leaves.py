@@ -19,8 +19,11 @@ def create_list_of_leaves_wrapper(executor, tree):
     return [x.data for x in result]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("tree_connect_leaves.py",
-                                       "tree_connect_leaves.tsv",
-                                       create_list_of_leaves_wrapper))
+        generic_test.generic_test_main(
+            "tree_connect_leaves.py",
+            "tree_connect_leaves.tsv",
+            create_list_of_leaves_wrapper,
+        )
+    )

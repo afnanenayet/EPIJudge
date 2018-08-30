@@ -6,10 +6,12 @@ def combinations(n, k):
     return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "combinations.py",
-            'combinations.tsv',
+            "combinations.tsv",
             combinations,
-            comparator=test_utils.unordered_compare))
+            comparator=test_utils.unordered_compare,
+        )
+    )

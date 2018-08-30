@@ -3,7 +3,7 @@ import collections
 from test_framework import generic_test
 from test_framework.test_failure import PropertyName
 
-Rectangle = collections.namedtuple('Rectangle', ('x', 'y', 'width', 'height'))
+Rectangle = collections.namedtuple("Rectangle", ("x", "y", "width", "height"))
 
 
 def intersect_rectangle(R1, R2):
@@ -25,10 +25,12 @@ def res_printer(prop, value):
         return value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "rectangle_intersection.py",
-            'rectangle_intersection.tsv',
+            "rectangle_intersection.tsv",
             intersect_rectangle_wrapper,
-            res_printer=res_printer))
+            res_printer=res_printer,
+        )
+    )

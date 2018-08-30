@@ -37,16 +37,16 @@ def duration_to_string(dur):
     dur = int(dur)
     MICRO_TO_MILLI = 1000
     MICRO_TO_SECOND = MICRO_TO_MILLI * 1000
-    FORMAT = '{:>4}'
+    FORMAT = "{:>4}"
 
     if dur == 0:
-        return '  <1 us'
+        return "  <1 us"
     elif dur < MICRO_TO_MILLI:
-        return str(FORMAT + ' us').format(dur)
+        return str(FORMAT + " us").format(dur)
     elif dur < MICRO_TO_SECOND:
-        return str(FORMAT + ' ms').format(dur // MICRO_TO_MILLI)
+        return str(FORMAT + " ms").format(dur // MICRO_TO_MILLI)
     else:
-        return str(FORMAT + '  s').format(dur // MICRO_TO_SECOND)
+        return str(FORMAT + "  s").format(dur // MICRO_TO_SECOND)
 
 
 def avg_and_median_from_durations(durations):

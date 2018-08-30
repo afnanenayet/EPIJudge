@@ -6,8 +6,11 @@ def is_pattern_contained_in_grid(grid, S):
     return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("is_string_in_matrix.py",
-                                       'is_string_in_matrix.tsv',
-                                       is_pattern_contained_in_grid))
+        generic_test.generic_test_main(
+            "is_string_in_matrix.py",
+            "is_string_in_matrix.tsv",
+            is_pattern_contained_in_grid,
+        )
+    )

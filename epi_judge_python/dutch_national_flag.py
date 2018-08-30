@@ -33,13 +33,16 @@ def dutch_flag_partition_wrapper(executor, A, pivot_idx):
         i += 1
 
     if i != len(A):
-        raise TestFailure('Not partitioned after {}th element'.format(i))
+        raise TestFailure("Not partitioned after {}th element".format(i))
     elif any(count):
         raise TestFailure("Some elements are missing from original array")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("dutch_national_flag.py",
-                                       'dutch_national_flag.tsv',
-                                       dutch_flag_partition_wrapper))
+        generic_test.generic_test_main(
+            "dutch_national_flag.py",
+            "dutch_national_flag.tsv",
+            dutch_flag_partition_wrapper,
+        )
+    )

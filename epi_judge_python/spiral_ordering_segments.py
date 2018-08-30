@@ -6,8 +6,11 @@ def matrix_in_spiral_order(square_matrix):
     return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("spiral_ordering_segments.py",
-                                       "spiral_ordering_segments.tsv",
-                                       matrix_in_spiral_order))
+        generic_test.generic_test_main(
+            "spiral_ordering_segments.py",
+            "spiral_ordering_segments.tsv",
+            matrix_in_spiral_order,
+        )
+    )

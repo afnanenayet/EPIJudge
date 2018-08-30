@@ -7,8 +7,11 @@ def remove_kth_last(L, k):
     return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("delete_kth_last_from_list.py",
-                                       'delete_kth_last_from_list.tsv',
-                                       remove_kth_last))
+        generic_test.generic_test_main(
+            "delete_kth_last_from_list.py",
+            "delete_kth_last_from_list.tsv",
+            remove_kth_last,
+        )
+    )

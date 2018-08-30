@@ -2,8 +2,11 @@ import functools
 
 from test_framework import generic_test
 from test_framework.random_sequence_checker import (
-    binomial_coefficient, check_sequence_is_uniformly_random,
-    compute_combination_idx, run_func_with_retries)
+    binomial_coefficient,
+    check_sequence_is_uniformly_random,
+    compute_combination_idx,
+    run_func_with_retries,
+)
 from test_framework.test_utils import enable_executor_hook
 
 
@@ -16,7 +19,9 @@ def online_random_sample(stream, k):
 @enable_executor_hook
 def online_random_sample_wrapper(executor, stream, k):
     def online_random_sample_runner(executor, stream, k):
-        results = executor.run(lambda : [online_random_sample(iter(stream), k) for _ in range(100000)])
+        results = executor.run(
+            lambda: [online_random_sample(iter(stream), k) for _ in range(100000)]
+        )
 
         total_possible_outcomes = binomial_coefficient(len(stream), k)
         stream = sorted(stream)
@@ -25,15 +30,19 @@ def online_random_sample_wrapper(executor, stream, k):
             for i in range(binomial_coefficient(len(stream), k))
         }
         return check_sequence_is_uniformly_random(
-            [comb_to_idx.get(tuple(sorted(result)), 0)
-             for result in results], total_possible_outcomes, 0.01)
+            [comb_to_idx.get(tuple(sorted(result)), 0) for result in results],
+            total_possible_outcomes,
+            0.01,
+        )
 
     run_func_with_retries(
-        functools.partial(online_random_sample_runner, executor, stream, k))
+        functools.partial(online_random_sample_runner, executor, stream, k)
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("online_sampling.py",
-                                       "online_sampling.tsv",
-                                       online_random_sample_wrapper))
+        generic_test.generic_test_main(
+            "online_sampling.py", "online_sampling.tsv", online_random_sample_wrapper
+        )
+    )

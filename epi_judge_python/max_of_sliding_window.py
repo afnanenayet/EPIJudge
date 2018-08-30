@@ -24,8 +24,11 @@ def calculate_traffic_volumes_wrapper(executor, A, w):
     return [(x.time, x.volume) for x in result]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("max_of_sliding_window.py",
-                                       'max_of_sliding_window.tsv',
-                                       calculate_traffic_volumes_wrapper))
+        generic_test.generic_test_main(
+            "max_of_sliding_window.py",
+            "max_of_sliding_window.tsv",
+            calculate_traffic_volumes_wrapper,
+        )
+    )
