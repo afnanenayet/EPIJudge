@@ -11,16 +11,50 @@ WHITE, BLACK = range(2)
 Coordinate = collections.namedtuple("Coordinate", ("x", "y"))
 
 
-def search_maze(maze, s, e):
-    # TODO - you fill in here.
-    return []
+def search_maze(maze, s: Coordinate, e: Coordinate) -> list:
+    """ Given a maze that is an array of black and white grids, treat the
+    black cells as a wall. Determine a valid path from the entrace to the
+    exit.
+
+    We are going to perform a DFS from the entrace to the exit, and use
+    the stack to store the path
+    """
+    transforms = [-1, 0, 1]
+
+    def dfs(maze, queue: list, s: Coordinate, e: Coordinate) -> list:
+        if s == e:
+            return queue
+
+        # check if coordinates are within maze
+        if (
+                0 <= s.x < len(maze)
+                and 0 <= s.y < len(maze[s.x])
+                and maze[s.x][s.y] == WHITE
+        ):
+            # mark current coordinate so it can't be visited again
+            maze[s.x][s.y] = BLACK
+
+        # Move to adjacent squares
+        if any(map(search_maze_helper, (
+                Coordinate(s.x - 1, s.y),
+                Coordinate(s.x + 1, s.y),
+                Coordinate(s.x, s.y + 1),
+                Coordinate(s.x, s.y - 1),
+        ))):
+            return True:
+        else:
+            return None
+
+    q = list()
+    path = dfs(maze, q, s, e)
+    return path
 
 
 def path_element_is_feasible(maze, prev, cur):
     if not (
-        (0 <= cur.x < len(maze))
-        and (0 <= cur.y < len(maze[cur.x]))
-        and maze[cur.x][cur.y] == WHITE
+            (0 <= cur.x < len(maze))
+            and (0 <= cur.y < len(maze[cur.x]))
+            and maze[cur.x][cur.y] == WHITE
     ):
         return False
     return (
