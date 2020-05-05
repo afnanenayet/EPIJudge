@@ -8,7 +8,33 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def overlapping_lists(l0: ListNode, l1: ListNode) -> Optional[ListNode]:
-    # TODO - you fill in here.
+    def length(l):
+        count = 0
+
+        while l:
+            l = l.next
+            count += 1
+        return count
+
+    length_0 = length(l0)
+    length_1 = length(l1)
+
+    if length_0 > length_1:
+        l0, l1 = l1, l0
+        length_1, length_0 = length_0, length_1
+
+    diff = abs(length_1 - length_0)
+    print(diff)
+
+    for _ in range(diff):
+        l1 = l1.next
+
+    while l0 and l1:
+        if l0 == l1:
+            return l0
+        l1 = l1.next
+        l0 = l0.next
+        print("hi")
     return None
 
 
@@ -38,7 +64,7 @@ def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):
         it = l0
         for _ in range(cycle0):
             if not it:
-                raise RuntimeError('Invalid input data')
+                raise RuntimeError("Invalid input data")
             it = it.next
         last.next = it
 
@@ -49,7 +75,7 @@ def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):
         it = l1
         for _ in range(cycle1):
             if not it:
-                raise RuntimeError('Invalid input data')
+                raise RuntimeError("Invalid input data")
             it = it.next
         last.next = it
 
@@ -62,11 +88,14 @@ def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):
     result = executor.run(functools.partial(overlapping_lists, l0, l1))
 
     if not (id(result) in common_nodes or (not common_nodes and not result)):
-        raise TestFailure('Invalid result')
+        raise TestFailure("Invalid result")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('do_lists_overlap.py',
-                                       'do_lists_overlap.tsv',
-                                       overlapping_lists_wrapper))
+        generic_test.generic_test_main(
+            "do_lists_overlap.py",
+            "do_lists_overlap.tsv",
+            overlapping_lists_wrapper,
+        )
+    )

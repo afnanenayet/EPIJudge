@@ -7,8 +7,41 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
+def cycle_len(start) -> int:
+    """Returns the length of a cycle in a linked list
+    """
+    end = start
+    count = 0
+
+    while start is not end:
+        end = end.next
+        count += 1
+    return count
+
+
 def has_cycle(head: ListNode) -> Optional[ListNode]:
-    # TODO - you fill in here.
+    if head is None:
+        return None
+
+    fast = slow = head
+
+    while fast and fast.next and fast.next.next:
+        fast = fast.next.next
+        slow = slow.next
+
+        # We have a cycle
+        if fast is slow:
+            cycle_length = cycle_len(fast)
+            first_iterator = head
+            trailing_iterator = head
+
+            for _ in range(cycle_length):
+                first_iterator = first_iterator.next
+
+            while first_iterator is not trailing_iterator:
+                first_iterator = first_iterator.next
+                trailing_iterator = trailing_iterator.next
+            return first_iterator
     return None
 
 

@@ -10,22 +10,32 @@ from test_framework.test_utils import enable_executor_hook
 
 # Input nodes are nonempty and the key at s is less than or equal to that at b.
 def find_lca(tree: BstNode, s: BstNode, b: BstNode) -> Optional[BstNode]:
-    # TODO - you fill in here.
-    return None
+    while tree.data < s.data or tree.data > b.data:
+        while tree.data < s.data:
+            tree = tree.right
+
+        while tree.data > b.data:
+            tree = tree.left
+    return tree
 
 
 @enable_executor_hook
 def lca_wrapper(executor, tree, s, b):
     result = executor.run(
-        functools.partial(find_lca, tree, must_find_node(tree, s),
-                          must_find_node(tree, b)))
+        functools.partial(
+            find_lca, tree, must_find_node(tree, s), must_find_node(tree, b)
+        )
+    )
     if result is None:
-        raise TestFailure('Result can\'t be None')
+        raise TestFailure("Result can't be None")
     return result.data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('lowest_common_ancestor_in_bst.py',
-                                       'lowest_common_ancestor_in_bst.tsv',
-                                       lca_wrapper))
+        generic_test.generic_test_main(
+            "lowest_common_ancestor_in_bst.py",
+            "lowest_common_ancestor_in_bst.tsv",
+            lca_wrapper,
+        )
+    )

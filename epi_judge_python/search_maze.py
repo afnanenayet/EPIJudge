@@ -14,8 +14,50 @@ Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
 
 def search_maze(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
-    # TODO - you fill in here.
-    return []
+    # Using BFS
+    q: List[Coordinate] = []
+    visited = set()
+    precedessor = dict()
+    precedessor[s] = None
+    q.append(s)
+    max_y = len(maze[0])
+    max_x = len(maze)
+
+    while len(q) > 0:
+        if q == e:
+            break
+
+        for neighbor in neighbors(q, max_x, max_y):
+            is_valid_cell = maze[neighbor.x][neighbor.y] == WHITE
+
+            if neighbor not in visited:
+                precedessor[neighbor] = q
+                q.append(neighbor)
+    path = []
+    path_it = e
+
+    while path_it:
+        path.insert(0, path_it)
+        path_it = precedessor[path_it]
+    return path
+
+
+def neighbors(c: Coordinate, max_x: int, max_y) -> List[Coordinate]:
+    """Generate a list of valid neighbor coordinates for a given 
+    cell. All of the resulting coordinates will be within the board.
+    """
+
+    transformations = [-1, 1]
+    res = []
+
+    for x in transformations:
+        for y in transformations:
+            new_x = c.x + x
+            new_y = c.y + y
+
+            if 0 <= new_x < max_x and 0 <= new_y < max_y:
+                res.append(Coordinate(new_x, new_y))
+    return res
 
 
 def path_element_is_feasible(maze, prev, cur):
@@ -23,9 +65,9 @@ def path_element_is_feasible(maze, prev, cur):
             (0 <= cur.y < len(maze[cur.x])) and maze[cur.x][cur.y] == WHITE):
         return False
     return cur == (prev.x + 1, prev.y) or \
-           cur == (prev.x - 1, prev.y) or \
-           cur == (prev.x, prev.y + 1) or \
-           cur == (prev.x, prev.y - 1)
+        cur == (prev.x - 1, prev.y) or \
+        cur == (prev.x, prev.y + 1) or \
+        cur == (prev.x, prev.y - 1)
 
 
 @enable_executor_hook

@@ -8,25 +8,58 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
-def lca(node0: BinaryTreeNode,
-        node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
-    # TODO - you fill in here.
+def lca(
+    node0: BinaryTreeNode, node1: BinaryTreeNode
+) -> Optional[BinaryTreeNode]:
+    visited = set()
+
+    while node0 and node1:
+        if node0 in visited:
+            return node0
+
+        visited.add(node0)
+
+        if node1 in visited:
+            return node1
+        visited.add(node1)
+
+        node0 = node0.parent
+        node1 = node1.parent
+
+    while node0:
+        if node0 in visited:
+            return node0
+
+        visited.add(node0)
+        node0 = node0.parent
+
+    while node1:
+        if node1 in visited:
+            return node1
+
+        visited.add(node1)
+        node1 = node1.parent
     return None
 
 
 @enable_executor_hook
 def lca_wrapper(executor, tree, node0, node1):
     result = executor.run(
-        functools.partial(lca, must_find_node(tree, node0),
-                          must_find_node(tree, node1)))
+        functools.partial(
+            lca, must_find_node(tree, node0), must_find_node(tree, node1)
+        )
+    )
 
     if result is None:
-        raise TestFailure('Result can\'t be None')
+        raise TestFailure("Result can't be None")
     return result.data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            'lowest_common_ancestor_close_ancestor.py',
-            'lowest_common_ancestor.tsv', lca_wrapper))
+            "lowest_common_ancestor_close_ancestor.py",
+            "lowest_common_ancestor.tsv",
+            lca_wrapper,
+        )
+    )
