@@ -10,12 +10,15 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def random_subset(n: int, k: int) -> List[int]:
-    l = [x for x in range(n)]
+    updated_idx = {}
 
     for i in range(k):
-        r = random.randint(i, n)
-        l[r], l[i] = l[i], l[r]
-    return l
+        r = random.randrange(i, n)
+        r_map = updated_idx.get(r, r)
+        i_map = updated_idx.get(i, i)
+        updated_idx[r] = i_map
+        updated_idx[i] = r_map
+    return [updated_idx[i] for i in range(k)]
 
 
 @enable_executor_hook
